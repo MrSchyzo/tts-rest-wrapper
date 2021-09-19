@@ -7,7 +7,6 @@ import javax.ws.rs.core.MultivaluedMap
 
 @ApplicationScoped
 class GenerateSpeechClientHeadersFactory: ClientHeadersFactory {
-
     override fun update(
         incomingHeaders: MultivaluedMap<String, String>?,
         outgoingHeaders: MultivaluedMap<String, String>?

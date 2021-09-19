@@ -9,10 +9,9 @@ import javax.ws.rs.core.MediaType
 class SpeakResource(
     @Inject @RestClient val speechClient: SpeechService
 ) {
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     fun speak(speech: Speech): String =
-        speechClient.generateSpeech(msg = speech.text).URL
+        speechClient.generateSpeech(msg = speech.text).url
 }
