@@ -1,5 +1,8 @@
-package it.mrschyzo
+package it.mrschyzo.web.external.endpoints
 
+import io.smallrye.mutiny.Uni
+import it.mrschyzo.web.external.endpoints.configuration.GenerateSpeechClientHeadersFactory
+import it.mrschyzo.web.external.types.SpeechResult
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
 import javax.ws.rs.Consumes
@@ -18,5 +21,5 @@ interface SpeechService {
         @FormParam("msg") msg: String,
         @FormParam("lang") lang: String = "Giorgio",
         @FormParam("source") source: String = "ttsmp3"
-    ): SpeechResult
+    ): Uni<SpeechResult>
 }

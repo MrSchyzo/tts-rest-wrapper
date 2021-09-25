@@ -1,4 +1,4 @@
-package it.mrschyzo
+package it.mrschyzo.web.external.endpoints.configuration
 
 import org.eclipse.microprofile.rest.client.ext.ClientHeadersFactory
 import javax.enterprise.context.ApplicationScoped

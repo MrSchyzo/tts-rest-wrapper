@@ -1,4 +1,4 @@
-package it.mrschyzo
+package it.mrschyzo.web.external.types
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

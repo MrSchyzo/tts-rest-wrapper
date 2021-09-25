@@ -1,4 +1,4 @@
-package it.mrschyzo
+package it.mrschyzo.web.exposed.types
 
 /***
  * An inline class is serialized as a simple json string
