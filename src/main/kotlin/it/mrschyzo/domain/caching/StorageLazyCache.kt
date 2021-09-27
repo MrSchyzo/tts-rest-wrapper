@@ -14,10 +14,15 @@ import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class StorageLazyCache : LazyCache<String, InputStream> {
-    override fun getOr(key: String, lazyInitializer: () -> Uni<InputStream>): Uni<InputStream> =
-        get(key).onFailure(FileNotFoundException::class.java).recoverWithUni(Supplier(lazyInitializer)).flatMap {
-            putAndGet(key, it)
-        }
+    override fun getOr(key: String, lazyInitializer: () -> Uni<InputStream>): Uni<InputStream> {
+        val filename = "$key.mp3"
+        return get(filename)
+            .onFailure(FileNotFoundException::class.java)
+            .recoverWithUni(Supplier(lazyInitializer))
+            .flatMap {
+                putAndGet(filename, it)
+            }
+    }
 
     private fun get(key: String): Uni<InputStream> =
         Uni.createFrom()

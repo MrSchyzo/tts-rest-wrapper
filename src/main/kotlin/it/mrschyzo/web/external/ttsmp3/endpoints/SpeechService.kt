@@ -1,8 +1,8 @@
-package it.mrschyzo.web.external.endpoints
+package it.mrschyzo.web.external.ttsmp3.endpoints
 
 import io.smallrye.mutiny.Uni
-import it.mrschyzo.web.external.endpoints.configuration.GenerateSpeechClientHeadersFactory
-import it.mrschyzo.web.external.types.SpeechResult
+import it.mrschyzo.web.external.ttsmp3.endpoints.configuration.GenerateSpeechClientHeadersFactory
+import it.mrschyzo.web.external.ttsmp3.types.SpeechResult
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
 import javax.ws.rs.Consumes

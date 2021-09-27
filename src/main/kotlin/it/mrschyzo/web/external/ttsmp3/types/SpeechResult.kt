@@ -1,4 +1,4 @@
-package it.mrschyzo.web.external.types
+package it.mrschyzo.web.external.ttsmp3.types
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

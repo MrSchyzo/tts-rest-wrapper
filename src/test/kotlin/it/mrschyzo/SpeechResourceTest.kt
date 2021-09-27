@@ -2,7 +2,7 @@ package it.mrschyzo
 
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.equalTo
 import org.junit.jupiter.api.Test
 import javax.ws.rs.core.MediaType
 
@@ -13,12 +13,11 @@ class SpeechResourceTest {
     fun testUrlEndpoint() {
         given()
             .contentType(MediaType.APPLICATION_JSON)
-            .body("Ciao amici")
-        .`when`()
+            .body("""{"text": "Ciao amici", "isMale": true}""")
+            .`when`()
             .post("/speak")
-        .then()
+            .then()
             .statusCode(200)
-            .body(endsWith(".mp3"))
+            .body(equalTo("ECF039C7BA214A37B66F8AAD644EADDFCFE655021672F25026973A298F30C225"))
     }
-
 }

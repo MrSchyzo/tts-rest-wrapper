@@ -1,9 +1,3 @@
 package it.mrschyzo.web.exposed.types
 
-/***
- * An inline class is serialized as a simple json string
- *
- * You do not have to specify this class as {"text": "..."}, but you need to specify it just as "..."
- */
-@JvmInline
-value class Speech(val text: String)
+data class Speech(val text: String, val isMale: Boolean)

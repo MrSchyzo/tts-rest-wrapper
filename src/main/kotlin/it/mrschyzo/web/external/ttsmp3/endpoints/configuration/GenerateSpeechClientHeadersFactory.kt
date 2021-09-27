@@ -1,4 +1,4 @@
-package it.mrschyzo.web.external.endpoints.configuration
+package it.mrschyzo.web.external.ttsmp3.endpoints.configuration
 
 import org.eclipse.microprofile.rest.client.ext.ClientHeadersFactory
 import javax.enterprise.context.ApplicationScoped
@@ -6,7 +6,7 @@ import javax.ws.rs.core.MultivaluedHashMap
 import javax.ws.rs.core.MultivaluedMap
 
 @ApplicationScoped
-class GenerateSpeechClientHeadersFactory: ClientHeadersFactory {
+class GenerateSpeechClientHeadersFactory : ClientHeadersFactory {
     override fun update(
         incomingHeaders: MultivaluedMap<String, String>?,
         outgoingHeaders: MultivaluedMap<String, String>?
