@@ -4,6 +4,13 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+## Adding git hooks for this project
+
+Run this command in the repository root
+```shell script
+git config --local core.hooksPath suggested_hooks
+```
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:

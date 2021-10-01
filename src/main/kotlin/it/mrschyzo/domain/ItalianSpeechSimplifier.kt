@@ -10,9 +10,10 @@ class ItalianSpeechSimplifier : SpeechSimplifier {
         SpeechParams(
             text = params.text.lowercase(Locale.ITALY)
                 .replace(Regex("[^a-zàèéìòù ]"), " ")
-                .replace(Regex("([a-zàèéìòù])\\1{3,}")) {
+                .trim()
+                .replace(Regex("([a-zàèéìòù])\\1{2,}")) {
                     it.value.substring(0, 2)
-                }.replace(Regex("( )\\1{2,}")) {
+                }.replace(Regex("( )\\1+")) {
                     it.value.substring(0, 1)
                 },
             isMale = params.isMale

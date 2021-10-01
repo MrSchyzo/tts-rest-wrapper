@@ -1,0 +1,2 @@
+./mvnw clean ktlint:format && \
+git add -u
