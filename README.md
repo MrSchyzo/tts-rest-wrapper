@@ -4,12 +4,22 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+
 ## Adding git hooks for this project
 
 Run this command in the repository root
 ```shell script
 git config --local core.hooksPath suggested_hooks
 ```
+
+
+## Custom configuration for this application
+
+There is already an `application.properties` shipped in the classpath, but it can be overwritten
+by creating a `config/application.properties` file into the working directory in which you wish to run the application.
+
+For more info, check [this link](https://quarkus.io/guides/config-reference#configuration-sources).
+
 
 ## Running the application in dev mode
 
@@ -19,6 +29,7 @@ You can run your application in dev mode that enables live coding using:
 ```
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+
 
 ## Packaging and running the application
 
@@ -36,6 +47,7 @@ If you want to build an _über-jar_, execute the following command:
 
 The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
 
+
 ## Creating a native executable
 
 You can create a native executable using: 
@@ -52,9 +64,11 @@ You can then execute your native executable with: `./target/tts-rest-wrapper-0.0
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
 
+
 ## Related Guides
 
 - Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
+
 
 ## Provided Code
 
