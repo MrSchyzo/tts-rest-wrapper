@@ -1,0 +1,26 @@
+version: "3.7"
+
+networks:
+  tts-network:
+
+services:
+  tts-service:
+    image: "quarkus/tts-rest-wrapper:latest"
+    expose:
+      - 8080
+    networks:
+      - tts-network
+    volumes:
+      - ./cache:/work/cache:rw
+      - ./config:/work/config:ro
+
+  nginx-lb:
+    image: nginx:1.21.3-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - tts-network
+    depends_on:
+      - tts-service
