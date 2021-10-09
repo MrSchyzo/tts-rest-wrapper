@@ -1,2 +1,1 @@
-./mvnw clean ktlint:check verify && \
-git add -u
+./mvnw clean ktlint:check verify
