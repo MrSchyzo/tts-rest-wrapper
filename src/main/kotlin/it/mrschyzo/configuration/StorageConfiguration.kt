@@ -1,10 +1,10 @@
 package it.mrschyzo.configuration
 
-import it.mrschyzo.utils.types.PosLong
+import it.mrschyzo.utils.types.PositiveLong
 import java.nio.file.Path
 
 interface StorageConfiguration {
     fun root(): Path
 
-    fun depth(): PosLong
+    fun depth(): PositiveLong
 }

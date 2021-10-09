@@ -1,7 +1,7 @@
 package it.mrschyzo.configuration
 
 import io.quarkus.arc.DefaultBean
-import it.mrschyzo.utils.types.PosLong
+import it.mrschyzo.utils.types.PositiveLong
 import java.nio.file.Path
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
@@ -21,7 +21,7 @@ class StorageBeans(
             override fun root(): Path =
                 StringToPathConverter().convert(storageConfiguration.root())
 
-            override fun depth(): PosLong =
+            override fun depth(): PositiveLong =
                 PositiveLongCoercionConverter().convert(storageConfiguration.depth().toString())
         }
     }
