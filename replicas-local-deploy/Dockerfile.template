@@ -24,4 +24,4 @@ COPY --chown=##USER##:root target/*-runner /work/application
 EXPOSE 8080
 USER ##USER##
 
-CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0", "-Xmx48m", "-Xms48m"]

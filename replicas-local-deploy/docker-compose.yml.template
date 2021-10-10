@@ -5,6 +5,8 @@ networks:
 
 services:
   tts-service:
+    # Uncomment one of the two images
+    # image: "quarkus/tts-rest-wrapper-jvm:latest"
     image: "quarkus/tts-rest-wrapper:latest"
     expose:
       - 8080

@@ -19,6 +19,7 @@ if [[ -f docker-compose.yml ]] ; then
 fi
 
 sed 's/##USER##/'"$(id -u)"'/g' replicas-local-deploy/Dockerfile.template > replicas-local-deploy/Dockerfile || exit
+sed 's/##USER##/'"$(id -u)"'/g' replicas-local-deploy/Dockerfile.jvm.template > replicas-local-deploy/Dockerfile.jvm || exit
 sed 's/##USER##/'"$(id -u)"'/g' replicas-local-deploy/docker-compose.yml.template > docker-compose.yml || exit
 sed -i 's/##GROUP##/'"$(id -g)"'/g' docker-compose.yml || exit
 sed -i 's|##ABS_PATH##|'"$(pwd)"'|g' docker-compose.yml || exit
@@ -28,6 +29,10 @@ sed -i 's|##ABS_PATH##|'"$(pwd)"'|g' docker-compose.yml || exit
 >&2 echo "Generating java nativeapp and docker image"
 ./mvnw package -Pnative -Dquarkus.native.container-build=true || exit
 docker build -f replicas-local-deploy/Dockerfile -t quarkus/tts-rest-wrapper . || exit
+
+>&2 echo "Generating java JVM-app and docker image"
+./mvnw package || exit
+docker build -f replicas-local-deploy/Dockerfile.jvm -t quarkus/tts-rest-wrapper-jvm . || exit
 
 >&2 echo "Now you can execute 'docker-compose up --scale tts-service=<N> [--other-options]'"
 

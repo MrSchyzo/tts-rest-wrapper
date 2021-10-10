@@ -38,6 +38,7 @@ nb-configuration.xml
 # Local environment
 .env
 replicas-local-deploy/Dockerfile
+replicas-local-deploy/Dockerfile.jvm
 replicas-local-deploy/store-cache
 docker-compose.yml
 config/application.properties
