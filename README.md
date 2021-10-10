@@ -48,6 +48,30 @@ If you want to build an _über-jar_, execute the following command:
 The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
 
 
+## Generating a docker-compose with load-balanced replicas
+
+In the repository root, run
+```shell script
+./generate-replicas-local-deploy.sh
+```
+
+It:
+- generates `replicas-local-deploy/Dockerfile` that is used to build the `docker`ized application
+- generates `docker-compose.yml` in order to run the load-balanced replicas under `nginx` 
+- copies `config/application.properties.example` into `config/application.properties` if this one is not present yet
+- creates `replicas-local-deploy/store-cache` directory that is used to store the shared volume of the replicas
+- builds the code into a nativeapp
+- builds the image using the generated `Dockerfile`
+
+In order to `run` the replicas:
+- `docker-compose up --scale tts-service=5` runs the replicas in "interactive mode"
+- `docker-compose up --detach --scale tts-service=5` runs the replicas in "background mode"
+
+In order to `stop` the replicas:
+- `docker-compose down` if running the "background mode"
+- `CTRL+C` if running the "interactive mode"
+
+
 ## Creating a native executable
 
 You can create a native executable using: 

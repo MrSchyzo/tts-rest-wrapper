@@ -11,15 +11,16 @@ services:
     networks:
       - tts-network
     volumes:
-      - ./cache:/work/cache:rw
-      - ./config:/work/config:ro
+      - ##ABS_PATH##/replicas-local-deploy/store-cache:/work/cache:rw
+      - ##ABS_PATH##/config:/work/config:ro
+    user: "##USER##:##GROUP##"
 
   nginx-lb:
     image: nginx:1.21.3-alpine
     ports:
       - "8080:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ##ABS_PATH##/replicas-local-deploy/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - tts-network
     depends_on:

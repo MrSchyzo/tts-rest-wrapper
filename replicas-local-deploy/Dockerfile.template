@@ -1,0 +1,27 @@
+####
+# This Dockerfile is used in order to build a container that runs the Quarkus application in native (no JVM) mode
+#
+# Before building the container image run:
+#
+# ./mvnw package -Pnative
+#
+# Then, build the image with:
+#
+# docker build -f src/main/docker/Dockerfile.native -t quarkus/tts-rest-wrapper .
+#
+# Then run the container using:
+#
+# docker run -i --rm -p 8080:8080 quarkus/tts-rest-wrapper
+#
+###
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
+WORKDIR /work/
+RUN chown ##USER## /work \
+    && chmod "g+rwX" /work \
+    && chown ##USER##:root /work
+COPY --chown=##USER##:root target/*-runner /work/application
+
+EXPOSE 8080
+USER ##USER##
+
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]

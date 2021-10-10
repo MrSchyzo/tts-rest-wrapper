@@ -12,4 +12,4 @@ quarkus.tls.trust-all=true
 # Depth is used in order to reduce the amount of files inside a directory
 # The amount of files inside a single directory is reduced by at most 16^depth
 storage.filesystem.depth=2
-storage.filesystem.root=tmp-cache
+storage.filesystem.root=cache
