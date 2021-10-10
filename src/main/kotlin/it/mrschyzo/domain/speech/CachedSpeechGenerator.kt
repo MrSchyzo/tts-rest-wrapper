@@ -21,6 +21,7 @@ class CachedSpeechGenerator(
         return cache.getOr(key) {
             converter.generateFrom(params)
         }.map {
+            it.close()
             key
         }
     }

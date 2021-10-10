@@ -5,12 +5,14 @@ import it.mrschyzo.web.external.ttsmp3.endpoints.configuration.GenerateSpeechCli
 import it.mrschyzo.web.external.ttsmp3.types.SpeechResult
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
+import javax.enterprise.context.ApplicationScoped
 import javax.ws.rs.Consumes
 import javax.ws.rs.FormParam
 import javax.ws.rs.POST
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 
+@ApplicationScoped
 @RegisterRestClient(configKey = "ttsmp3-client")
 @RegisterClientHeaders(GenerateSpeechClientHeadersFactory::class)
 interface SpeechService {
