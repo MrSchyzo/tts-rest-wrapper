@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 @ApplicationScoped
 class DigestKeyGenerator(
-    @Inject val digest: MessageDigest,
+    @Inject val retrieveDigest: () -> MessageDigest,
     @Inject val byteToString: (ByteArray) -> String
 ) : KeyGenerator<SpeechParams, String> {
     override fun generateFrom(input: SpeechParams): String =
-        byteToString(digest.digest("${input.speaker}_${input.text}".toByteArray()))
+        byteToString(retrieveDigest().digest("${input.speaker}_${input.text}".toByteArray()))
 }
