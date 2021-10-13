@@ -5,7 +5,7 @@ import io.smallrye.mutiny.Uni
 import io.smallrye.mutiny.infrastructure.Infrastructure
 import it.mrschyzo.configuration.StorageConfiguration
 import it.mrschyzo.filesystem.FilesystemLayer
-import it.mrschyzo.filesystem.PathDecider
+import it.mrschyzo.filesystem.PartialPathDecider
 import it.mrschyzo.utils.extensions.and
 import it.mrschyzo.utils.extensions.onErrorThrow
 import java.io.FileNotFoundException
@@ -19,7 +19,7 @@ import javax.inject.Inject
 class FilesystemLazyCache(
     @Inject val config: StorageConfiguration,
     @Inject val filesystemLayer: FilesystemLayer,
-    @Inject val pathDecider: PathDecider
+    @Inject val partialPathDecider: PartialPathDecider
 ) : LazyCache<String, InputStream> {
     override fun getOr(key: String, lazyInitializer: () -> Uni<InputStream>): Uni<InputStream> =
         get("$key.mp3")
@@ -54,7 +54,7 @@ class FilesystemLazyCache(
             .onErrorThrow()
 
     private fun ensurePathOf(filename: String): Path {
-        val subPath = pathDecider.decideFor(filename).onErrorThrow()
+        val subPath = partialPathDecider.decideFor(filename).onErrorThrow()
         val filepath =
             config.root()
                 .and(subPath)

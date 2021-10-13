@@ -10,10 +10,10 @@ import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 
 @ApplicationScoped
-class NestedDirsPathDecider(
+class NestedDirsPartialPathDecider(
     @Inject val config: StorageConfiguration,
-) : PathDecider {
-    override fun decideFor(filename: String): Result<Path, IllegalArgumentException> {
+) : PartialPathDecider {
+    override fun decideFor(filename: String): Result<String, IllegalArgumentException> {
         val withoutExtension = filename.substringBeforeLast(".")
         val integerDepth = config.depth()
 
@@ -28,6 +28,7 @@ class NestedDirsPathDecider(
                     .drop(1)
                     .map { "$it" }
                     .fold(initialPath, Path::and)
+                    .toString()
             )
         }
     }

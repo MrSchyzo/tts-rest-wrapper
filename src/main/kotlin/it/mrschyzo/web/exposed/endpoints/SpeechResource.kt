@@ -6,6 +6,7 @@ import it.mrschyzo.domain.speech.SpeechGenerator
 import it.mrschyzo.domain.speech.SpeechWebToDomain
 import it.mrschyzo.web.exposed.types.Speech
 import java.io.InputStream
+import java.net.URL
 import javax.inject.Inject
 import javax.inject.Named
 import javax.ws.rs.Consumes
@@ -26,7 +27,7 @@ class SpeechResource(
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    fun generateSpeech(speech: Speech): Uni<String> =
+    fun generateSpeech(speech: Speech): Uni<URL> =
         generator.generateFrom(mapper.webToDomain(speech))
 
     @Path("{name}")
