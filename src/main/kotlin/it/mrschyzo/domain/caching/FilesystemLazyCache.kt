@@ -11,7 +11,6 @@ import it.mrschyzo.utils.extensions.onErrorThrow
 import java.io.FileNotFoundException
 import java.io.InputStream
 import java.nio.file.Path
-import java.util.function.Supplier
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 
@@ -24,9 +23,10 @@ class FilesystemLazyCache(
     override fun getOr(key: String, lazyInitializer: () -> Uni<InputStream>): Uni<InputStream> =
         get("$key.mp3")
             .onFailure(FileNotFoundException::class.java)
-            .recoverWithUni(Supplier(lazyInitializer))
-            .flatMap {
-                putAndGet("$key.mp3", it)
+            .recoverWithUni { _ ->
+                lazyInitializer().flatMap {
+                    putAndGet("$key.mp3", it)
+                }
             }
 
     // Implementation details

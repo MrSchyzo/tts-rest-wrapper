@@ -12,6 +12,7 @@ import java.nio.file.StandardCopyOption
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
+// WARNING: using the filesystem is not atomic, prepare for trouble (and make it double, quot.)
 class LocalFilesystemLayer : FilesystemLayer {
     override fun getStreamFrom(filepath: Path): Result<InputStream, IOException> =
         catchAsError {
