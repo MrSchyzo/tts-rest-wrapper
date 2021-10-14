@@ -1,9 +1,9 @@
 package it.mrschyzo.configuration
 
 import io.quarkus.arc.DefaultBean
-import it.mrschyzo.utils.concurrency.BlockingLeasing
-import it.mrschyzo.utils.concurrency.EagerBlockingLeasing
 import java.security.MessageDigest
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.BlockingQueue
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Inject
@@ -18,6 +18,9 @@ class ObjectPoolBeans(
 ) {
     @Produces
     @DefaultBean
-    fun digestPool(): BlockingLeasing<MessageDigest> =
-        EagerBlockingLeasing(objectPoolConfiguration.size(), digestGenerator)
+    fun digestPool(): BlockingQueue<MessageDigest> {
+        val pool = ArrayBlockingQueue<MessageDigest>(objectPoolConfiguration.size())
+        while (pool.offer(digestGenerator())) ;
+        return pool
+    }
 }
