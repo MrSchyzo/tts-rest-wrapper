@@ -18,3 +18,5 @@ rest.generation.route=http://localhost:8080/speak
 
 file.generation.serveRoot=http://localhost:8080
 file.generation.urlSuffix=.mp3
+
+object.pool.messageDigest.size=256

@@ -10,7 +10,6 @@ import javax.xml.bind.DatatypeConverter
 class DigestBeans {
     @Produces
     @DefaultBean
-    // TODO: maybe a thread-safe object pool can be better for the memory
     fun sha256(): () -> MessageDigest =
         { MessageDigest.getInstance("SHA-256") }
 
