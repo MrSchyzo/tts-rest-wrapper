@@ -7,8 +7,10 @@ import org.eclipse.microprofile.rest.client.inject.RestClient
 import java.io.InputStream
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
+import javax.inject.Named
 
 @ApplicationScoped
+@Named("ttsmp3")
 class TtsMp3SpeechToByteConversion(
     @Inject @RestClient val speechClient: SpeechService,
     @Inject @RestClient val downloadClient: DownloadService,

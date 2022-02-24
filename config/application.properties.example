@@ -6,6 +6,10 @@ ttsmp3-downloader/mp-rest/url=https://ttsmp3.com/created_mp3
 ttsmp3-downloader/mp-rest/scope=javax.inject.Singleton
 ttsmp3-downloader/mp-rest/hostnameVerifier=io.quarkus.restclient.NoopHostnameVerifier
 
+googletranslate-client/mp-rest/url=https://translate.google.com/translate_tts
+googletranslate-client/mp-rest/scope=javax.inject.Singleton
+googletranslate-client/mp-rest/hostnameVerifier=io.quarkus.restclient.NoopHostnameVerifier
+
 quarkus.smallrye-openapi.path=/swagger
 quarkus.tls.trust-all=true
 

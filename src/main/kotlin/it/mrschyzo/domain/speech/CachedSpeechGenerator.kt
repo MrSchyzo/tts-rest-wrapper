@@ -15,7 +15,7 @@ import javax.inject.Named
 @ApplicationScoped
 @Named("cached")
 class CachedSpeechGenerator(
-    @Inject val converter: SpeechToByteConversion,
+    @Inject @Named("cascading") val converter: SpeechToByteConversion,
     @Inject val cache: LazyCache<String, InputStream>,
     @Inject val keyGenerator: KeyGenerator<SpeechParams, String>,
     @Inject val urlGenerator: UrlGenerator<String, MalformedURLException>,
