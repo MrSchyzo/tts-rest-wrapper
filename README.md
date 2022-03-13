@@ -5,6 +5,44 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
 
+## How to use
+
+### Swagger
+
+Just `curl http://localhost/swagger`, it'll download a `swagger.yaml` file.
+
+### API
+
+#### `POST /speak`
+
+Input as follows with HTTP header `Content-Type: application/json`
+```json
+{
+  "text": <string>,
+  "isMale": <boolean>
+}
+```
+
+Output will be the URL of the generated mp3 file. 
+
+#### `GET /speak/<code>`
+
+Just `curl` to `http://localhost:80/speak/<someCode>`, it'll try to return an `octet stream`
+if it happens to have a file corresponding to that code.
+
+#### Bash oneliner
+
+An oneliner that immediately plays the generated speech (assuming you have `mpv` installed).
+
+```shell
+curl \
+  -H 'Content-Type: application/json'\ 
+  -X POST http://localhost/speak \
+  --data-raw '{"text": "Ciao", "isMale": false}' \
+  | xargs mpv
+```
+
+
 ## Adding git hooks for this project
 
 Run this command in the repository root
